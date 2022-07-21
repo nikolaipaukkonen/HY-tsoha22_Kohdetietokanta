@@ -1,1 +1,2 @@
-# HY-tsoha22_Muinaisj-nn-ssovellus
+# Kohdetietokanta
+## Kurssityö HY Tietokantasovellus -kurssille kesä 2022
