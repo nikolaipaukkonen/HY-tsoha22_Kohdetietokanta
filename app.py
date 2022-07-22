@@ -1,6 +1,11 @@
 from flask import Flask, render_template, request, url_for, redirect, flash, session, jsonify
+from flask_sqlalchemy import SQLAlchemy
+
+MAPBOX_TOKEN = ""
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///kohdetietokanta'
+db = SQLAlchemy(app)
 
 @app.route("/")
 def index():
@@ -10,8 +15,8 @@ def index():
 
 @app.route("/map", methods=["GET", "POST"])
 def my_maps():
-    mapbox_access_token = "pk.eyJ1IjoibnBhYSIsImEiOiJjbDV3bHpmMjYwNmQ5M29vYXMydGJjczl4In0.vJQwW2jPoaSZWSzHDy3pNw"
-
+    mapbox_access_token = MAPBOX_TOKEN
+    # korjaa tokeni pois
     return render_template("map.html", mapbox_access_token=mapbox_access_token)
 
 @app.route("/create_user")
@@ -20,7 +25,7 @@ def create_user():
 
 @app.route("/result", methods=["POST"])
 def result():
-    return render_template("result.html", name=request.form["username"], email=request.form["email"])
+    return render_template("result.html", username=request.form["username"], email=request.form["email"])
 
 @app.route("/create_location")
 def create_location():
