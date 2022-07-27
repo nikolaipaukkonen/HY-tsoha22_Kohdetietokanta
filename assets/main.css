@@ -1,0 +1,49 @@
+body {
+    margin: auto;
+    max-width: 50em;
+    font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+    background: #d4d4d4
+}
+
+.header {
+    background: #b1c0e3;
+    font-weight: bold;
+    padding: auto;
+    font-size: 2em;
+    border-radius: .5em;
+    margin-top: .5em;
+}
+
+
+form {
+    float: right;
+    padding: .5em;
+    background: #b1c0e3;
+    border-radius: .5em;
+    max-width: 15em;
+    display  : grid;
+    grid-template-columns: 5em 10em;
+    grid-row-gap: .3em;
+    margin-bottom: 2em;
+    margin-left: 2em;
+    
+}
+
+form label, input{
+    margin: auto 0;
+}
+
+form #button {
+    grid-column-start: 2;
+    padding:5px;
+    border: none;
+    text-align: center;
+    width: 5em;
+    margin: auto 0 auto 5.5em;
+    background: gray;
+}
+
+form #button:hover{
+    background: #d4d4d4;
+    color: white;
+}
