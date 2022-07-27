@@ -10,3 +10,11 @@
 
 {% endfor %}
 </ul>
+
+<form action="/login" method="POST">
+    <label for="username">Tunnus:</label>
+    <input type="text" name="username"><br>
+    <label for="password">Salasana:</label>
+    <input type="password" name="password"><br>
+    <input type="submit" value="Kirjaudu">
+  </form>
