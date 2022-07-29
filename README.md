@@ -1,5 +1,5 @@
 # Kohdetietokanta
-Kurssityö HY Tietokantasovellus -kurssille kesä 2022
+Kurssityö HY Tietokantasovellus -kurssille kesä 2022. Toteutus Pythonilla, Flaskilla ja PostgreSQL:llä. 
 
 ## Sovelluksen tarkoitus
 Toteutan kurssityötä varten tietokantasovelluksen, johon voidaan tallentaa erilaisia maantieteellisiä kohteita sijainti- ja muine tietoineen. Tässä tapauksessa kyse on ns. muinaisjäännösrekisteristä, eli tietokannasta, jossa on muinaisjäännöskohteita, joilla on ajoitus ja tyyppi. Käyttäjä voi rekisteröidä uuden käyttäjätunnuksen salasanoineen, minkä jälkeen voi kirjautuneena luoda uusia kohteita ja valita niille ajoituksia (esim. pronssikausi, keskiaika) tai tyyppejä (esim. asuinpaikka, hauta). Sovelluksessa voi lisäksi hakea kohteita nimen, tyypin ja ajoituksen perusteella. Admin-oikeuksilla varustetut käyttäjät voivat lisäksi luoda uusia tyyppejä ja ajoituksia sekä poistaa kohteita. 
