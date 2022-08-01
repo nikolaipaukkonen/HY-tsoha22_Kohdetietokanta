@@ -16,8 +16,7 @@ def index():
 
 @app.route("/map", methods=["GET", "POST"])
 def my_maps():
-    mapbox_access_token = getenv("MAPBOX_TOKEN")
-    # korjaa tokeni pois
+    mapbox_access_token = getenv("MAPBOX_TOKEN")    
     return render_template("map.html", mapbox_access_token=mapbox_access_token)
 
 @app.route("/create_user")
