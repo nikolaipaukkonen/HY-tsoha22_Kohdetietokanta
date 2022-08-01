@@ -1,7 +1,7 @@
 CREATE TABLE locations (
     id SERIAL PRIMARY KEY, name TEXT UNIQUE, 
     dating_id INTEGER REFERENCES datings, 
-    type_id REFERENCES types
+    type_id INTEGER REFERENCES types
     ); 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY, 
