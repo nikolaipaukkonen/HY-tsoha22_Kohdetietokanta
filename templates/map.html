@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title> My maps </title>
+	<title> Pick location </title>
 	<script src='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
 	<link href='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
 	<style>
@@ -31,7 +31,16 @@
 		}
 	</style>
 </head>
-
+<div>
+<form action="/send" method="post">
+	Location name: <br>
+	<textarea name="content" rows="3" cols="40"></textarea>
+	<br>
+	<input type="submit" value="Send">
+	Location type: <br>
+	Location dating: <br>
+	</form>
+</div>
 <body>
 	<div class="container">
 		

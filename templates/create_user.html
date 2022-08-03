@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css')}}">
 
-<form action="/result" method="POST">
+<form action="/register" method="POST">
     Enter username:
     <input type="text" name="username" />
     <br>
@@ -9,6 +9,9 @@
     <input type="text" name="email" />
     <br>
     Enter password:
-    <input type="text" name="password" >
+    <input type="text" name="password1" >
+    <br>
+    Re-enter password:
+    <input type="text" name="password2" >
     <input type="submit" value="Send">
 </form>
