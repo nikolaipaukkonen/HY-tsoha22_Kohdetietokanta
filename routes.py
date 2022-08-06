@@ -1,4 +1,3 @@
-from winreg import REG_WHOLE_HIVE_VOLATILE
 from app import app
 from flask import render_template, request, redirect
 from db import db
