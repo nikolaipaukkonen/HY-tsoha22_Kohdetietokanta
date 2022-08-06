@@ -1,3 +1,4 @@
+from winreg import REG_WHOLE_HIVE_VOLATILE
 from app import app
 from flask import render_template, request, redirect
 from db import db
@@ -14,6 +15,11 @@ def index():
 @app.route("/new", methods=["GET", "POST"])
 def new():
     mapbox_access_token = getenv("MAPBOX_ACCESS_TOKEN")
+    x = request.form.get("x")
+    y = request.form.get("y")
+    z = request.form.get("z")
+    dating = request.form["dating"]
+    type = request.form["id"]
     return render_template("map.html", mapbox_access_token=mapbox_access_token)
 
 @app.route("/login", methods=["GET", "POST"])
