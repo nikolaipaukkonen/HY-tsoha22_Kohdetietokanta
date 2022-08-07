@@ -1,50 +1,33 @@
-<!DOCTYPE html>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css')}}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <html>
 <head>
 	<title> Pick location </title>
 	<script src='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
 	<link href='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
-	<style>
-		.container {
-			max-width: 80%;
-			max-height: 80%;
-			margin-left: auto;
-			margin-right: auto;
-		}
-		.inputBox {
-		    width: 50%;
-		    padding: 12px 20px;
-		    margin: 8px 0;
-		    box-sizing: border-box;
-		}
-		.button {
-		    background-color: #696d69;
-		    border: none;
-		    color: white;
-		    padding: 15px 32px;
-		    text-align: center;
-		    text-decoration: none;
-		    display: inline-block;
-		    font-size: 16px;
-		    margin: 4px 2px;
-		    cursor: pointer;
-		}
-	</style>
+
 </head>
 <div>
 <form action="/send" method="post">
 	Location name: <br>
-	<textarea name="content" rows="3" cols="40"></textarea>
+	<textarea name="content" rows="1" cols="40"></textarea>
 	<br>
+	Location type: <select name=types method="GET" action="/send">
+		{% for type in types %}
+			<option value="{{ type }}">{{ type }}</option>
+		{% endfor %}
+	</select><br>
+	Location dating: <select name=datings method="GET" action="/send">
+		{% for dating in datings %}
+			<option value="{{ dating }}">{{ dating }}</option>
+		{% endfor %}
+	</select><br>
 	<input type="submit" value="Send">
-	Location type: <br>
-	Location dating: <br>
 	</form>
 </div>
 <body>
 	<div class="container">
 		
-		<font face="verdana" size='7'> Mapbox maps in your apps</font> <br/><br/>
 		<input class="inputBox" type="number" id="Longitude" placeholder="Enter Longitude" />
 		<input class="inputBox" type="number" id="Latitude" placeholder="Enter Latitude" />
 		<button class="button" onclick="getLonLat()"> Submit</button>
@@ -68,8 +51,8 @@
 			container: 'map',
 			style: 'mapbox://styles/mapbox/satellite-streets-v10',
 			center: [longitude,latitude],
-			zoom: 6,
-			bearing: -17.6,
+			zoom: 5,
+			bearing: 0,
 			pitch:0
 		
 			});
@@ -85,9 +68,9 @@
 	  		// change false to true, to get your location. Then, enable location in the browser.
 	  		map.addControl(new mapboxgl.GeolocateControl({
 	    			positionOptions: {
-	        			enableHighAccuracy: false
+	        			enableHighAccuracy: true
 	    			},
-	    		trackUserLocation: false
+	    		trackUserLocation: true
 			}));
 	  		// The 'building' layer in the mapbox-streets vector source contains building-height
 			// data from OpenStreetMap.

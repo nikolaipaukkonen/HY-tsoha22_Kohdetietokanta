@@ -2,7 +2,8 @@ from app import app
 from flask import render_template, request, redirect
 from db import db
 from os import getenv
-import new, users
+import users
+import new_location
 
 @app.route("/")
 def index():
@@ -11,15 +12,24 @@ def index():
     sites = result.fetchall()
     return render_template("index.html", message=message, items=sites)
 
-@app.route("/new", methods=["GET", "POST"])
-def new():
-    mapbox_access_token = getenv("MAPBOX_ACCESS_TOKEN")
-    x = request.form.get("x")
-    y = request.form.get("y")
-    z = request.form.get("z")
-    dating = request.form["dating"]
-    type = request.form["id"]
-    return render_template("map.html", mapbox_access_token=mapbox_access_token)
+@app.route("/new", methods=['GET'])
+def new_location():
+    types = db.session.execute("SELECT * FROM types")
+    datings = db.session.execute("SELECT * FROM datings")
+    mapbox_access_token = getenv("MAPBOX_TOKEN")
+    return render_template("map.html", mapbox_access_token=mapbox_access_token, datings=datings, types=types)
+    
+@app.route("/send", methods=["GET", "POST"])
+def send():
+    #x = request.form.get("x")
+    #y = request.form.get("y")
+    if request.method == "POST":
+        dating = request.form["datings"]
+        type = request.form["types"]
+        if new_location.add_location(dating, type):
+            return redirect("/")
+        else:
+            return render_template("error.html", message="New location not added possibly due to name being already in use.")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
