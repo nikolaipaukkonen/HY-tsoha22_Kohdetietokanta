@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css')}}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<form action="/login" method="POST">
+    <label for="username">User:</label><br>
+    <input type="text" name="username"><br>
+
+    <label for="password">Password:</label><br>
+    <input type="password" name="password"><br>
+
+    <input type="submit" value="Login">
+  </form>
+
+  If you don't have an account, you can <a href="/register">register</a> one.

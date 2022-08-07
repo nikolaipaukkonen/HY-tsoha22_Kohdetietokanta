@@ -6,7 +6,7 @@ import new, users
 
 @app.route("/")
 def index():
-    message = "Welcome to the application!"
+    message = "Welcome to the archaeological location application!"
     result = db.session.execute("SELECT * FROM locations")
     sites = result.fetchall()
     return render_template("index.html", message=message, items=sites)
