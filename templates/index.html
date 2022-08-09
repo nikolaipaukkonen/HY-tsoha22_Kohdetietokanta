@@ -20,10 +20,21 @@
 
  {% endif %}
 
+
  <h2>List of locations</h2>
-<ul>
+ <table>
+  <tr>
+    <th>Id</th>
+    <th>Site name</th>
+    <th>Type</th>
+    <th>Dating</th>
+  </tr>
   {% for item in items %}
-  <li> {{ item }}
-  
+  <tr>
+    <th>{{ item[0] }}</th>
+    <th>{{ item[1] }}</th>
+    <th>{{ item[2] }}</th>
+    <th>{{ item[3] }}</th>
+  </tr>
   {% endfor %}
-  </ul>
+</table>

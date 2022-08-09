@@ -13,7 +13,7 @@ def index():
     return render_template("index.html", message=message, items=sites)
 
 @app.route("/new", methods=['GET'])
-def new_location():
+def new():
     types = db.session.execute("SELECT * FROM types")
     datings = db.session.execute("SELECT * FROM datings")
     mapbox_access_token = getenv("MAPBOX_TOKEN")
@@ -24,9 +24,11 @@ def send():
     #x = request.form.get("x")
     #y = request.form.get("y")
     if request.method == "POST":
+        name = request.form["name"]
         dating = request.form["datings"]
         type = request.form["types"]
-        if new_location.add_location(dating, type):
+        print(dating, type)
+        if new_location.add_location(name, dating, type):
             return redirect("/")
         else:
             return render_template("error.html", message="New location not added possibly due to name being already in use.")

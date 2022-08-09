@@ -12,7 +12,8 @@ CREATE TABLE types (
     type_name TEXT UNIQUE
     );
 CREATE TABLE locations (
-    id SERIAL PRIMARY KEY, name TEXT UNIQUE, 
+    id SERIAL PRIMARY KEY, 
+    name TEXT UNIQUE, 
     dating_id INTEGER REFERENCES datings, 
     type_id INTEGER REFERENCES types
     ); 
