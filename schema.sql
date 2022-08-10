@@ -15,7 +15,8 @@ CREATE TABLE locations (
     id SERIAL PRIMARY KEY, 
     name TEXT UNIQUE, 
     dating_id INTEGER REFERENCES datings, 
-    type_id INTEGER REFERENCES types
+    type_id INTEGER REFERENCES types,
+    createdby_id INTEGER REFERENCES users
     ); 
 CREATE TABLE comments (
     id SERIAL PRIMARY KEY, 

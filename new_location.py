@@ -9,8 +9,13 @@ def add_location(name, dating, type):
         print("Input:", name, dating, type)
         #print(type(dating))
         print("New location created by user", user_id)
-        sql = "INSERT INTO locations (name, dating_id, type_id) VALUES (:name, :dating_id, :type_id)"
-        db.session.execute(sql, {"name":name, "dating_id":int(dating[1]), "type_id":int(type[1])})
+        sql = "INSERT INTO locations (name, dating_id, type_id, createdby_id) VALUES (:name, :dating_id, :type_id, :user_id)"
+        db.session.execute(
+            sql, 
+            {"name":name, 
+            "dating_id":int(dating[1]), 
+            "type_id":int(type[1]), 
+            "user_id":session["user_id"]})
         db.session.commit()
         return True
     #except:

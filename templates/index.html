@@ -27,9 +27,11 @@
     <th>Site name</th>
     <th>Type</th>
     <th>Dating</th>
+    <th>Created by</th>
   </tr>
   {% for item in items %}
   <tr>
+    <th>{{ item[0] }}</th>
     <th>{{ item[1] }}</th>
     <th>{{ item[2] }}</th>
     <th>{{ item[3] }}</th>
