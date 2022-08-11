@@ -29,36 +29,29 @@
   </nav>
 
 <div>
-<form action="/send" method="post">
-	Location name: <br>
-	<textarea name="name" rows="1" cols="40"></textarea>
-	<br>
-	Location type: <select name=types method="GET" action="/send">
-		{% for type in types %}
-			<option value="{{ type }}">{{ type }}</option>
-		{% endfor %}
-	</select><br>
-	Location dating: <select name=datings method="GET" action="/send">
-		{% for dating in datings %}
-			<option value="{{ dating }}">{{ dating }}</option>
-		{% endfor %}
-	</select><br>
-	<input type="submit" value="Send">
+	<form action="/send" method="post">
+		Location name: <br>
+		<textarea name="name" rows="1" cols="40"></textarea>
+		<br>
+		Location type: <select name=types method="GET" action="/send">
+			{% for type in types %}
+				<option value="{{ type }}">{{ type }}</option>
+			{% endfor %}
+		</select><br>
+		Location dating: <select name=datings method="GET" action="/send">
+			{% for dating in datings %}
+				<option value="{{ dating }}">{{ dating }}</option>
+			{% endfor %}
+		</select><br>
+			
+		<input class="inputBox" type="number" id="Longitude" placeholder="Longitude" />
+		<input class="inputBox" type="number" id="Latitude" placeholder="Latitude" />
+		<br>
+		<input type="submit" value="Send"><br>	
+		<div id='map' style='width: 200%; height:500px;'></div>
 	</form>
 </div>
-<body>
-	<div class="container">
-		
-		<input class="inputBox" type="number" id="Longitude" placeholder="Enter Longitude" />
-		<input class="inputBox" type="number" id="Latitude" placeholder="Enter Latitude" />
-		<button class="button" onclick="getLonLat()"> Submit</button>
-		<div id='map' style='width: 95%; height:500px;'></div><br/><br/>
-		
-	</div>
-	
-
-
-
+	<body>
 	<script>
 		var longitude, latitude;
 		function getLonLat(){
@@ -76,6 +69,12 @@
 			bearing: 0,
 			pitch:0
 		
+			});
+			map.on('style.load', function() {
+				map.on('click', function(e) {
+					var coordinates = e.lngLat;
+					new mapboxgl.Marker().setLngLat(coordinates).addTo(map);
+				})
 			});
 			// fulscreen button 
 			map.addControl(new mapboxgl.FullscreenControl());
