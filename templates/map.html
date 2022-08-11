@@ -7,6 +7,27 @@
 	<link href='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
 
 </head>
+
+<nav>
+	<table>
+	<tr>
+	  {% if session.user_id %}
+		<th>You are logged in as {{ session.username}}</th>
+		<th><a href="/new">Add a location </a></th>
+		<th><a href="/logout">Logout </a></th>
+  
+  
+	  {% else %}
+		You need to login to use the application
+		<th><a href="/login">Login </a></th>
+		<th><a href="{{ url_for('register') }}">New user</a></th>
+  
+	  {% endif %}
+		<th><a href="/">Front page</a></th>
+	  </tr>
+	</table>
+  </nav>
+
 <div>
 <form action="/send" method="post">
 	Location name: <br>

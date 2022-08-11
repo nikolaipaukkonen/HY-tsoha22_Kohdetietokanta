@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css')}}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<nav>
+	<table>
+	<tr>
+	  {% if session.user_id %}
+		<th>You are logged in as {{ session.username}}</th>
+		<th><a href="/new">Add a location </a></th>
+		<th><a href="/logout">Logout </a></th>
+  
+  
+	  {% else %}
+		You need to login to use the application
+		<th><a href="/login">Login </a></th>
+		<th><a href="{{ url_for('register') }}">New user</a></th>
+  
+	  {% endif %}
+		<th><a href="/">Front page</a></th>
+	  </tr>
+	</table>
+  </nav>
+
+<h1>Comments for the site {{ site_name }}</h1>
+{% for comment in comments %}
+
+{% endfor %}

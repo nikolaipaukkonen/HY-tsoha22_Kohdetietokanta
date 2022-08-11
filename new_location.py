@@ -7,7 +7,6 @@ def add_location(name, dating, type):
         user_id = users.user_id()
         print("Test")
         print("Input:", name, dating, type)
-        #print(type(dating))
         print("New location created by user", user_id)
         sql = "INSERT INTO locations (name, dating_id, type_id, createdby_id) VALUES (:name, :dating_id, :type_id, :user_id)"
         db.session.execute(

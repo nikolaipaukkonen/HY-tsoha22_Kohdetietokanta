@@ -1,7 +1,8 @@
 CREATE TABLE users (
     id SERIAL PRIMARY KEY, 
     username TEXT UNIQUE, 
-    password TEXT
+    password TEXT,
+    admin BOOLEAN
     );
 CREATE TABLE datings (
     id SERIAL PRIMARY KEY, 
@@ -20,7 +21,8 @@ CREATE TABLE locations (
     ); 
 CREATE TABLE comments (
     id SERIAL PRIMARY KEY, 
-    content TEXT, user_id INTEGER REFERENCES users, 
+    content TEXT, 
+    user_id INTEGER REFERENCES users, 
     sent_at TIMESTAMP, 
     location_id INTEGER REFERENCES locations
     );
