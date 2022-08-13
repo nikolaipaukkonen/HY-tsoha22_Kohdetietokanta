@@ -21,14 +21,14 @@ def new():
     
 @app.route("/send", methods=["GET", "POST"])
 def send():
-    #x = request.form.get("x")
-    #y = request.form.get("y")
     if request.method == "POST":
         name = request.form["name"]
         dating = request.form["datings"]
         type = request.form["types"]
+        x = request.form.get("x")
+        y = request.form.get("y")
         print(dating, type)
-        if new_location.add_location(name, dating, type):
+        if new_location.add_location(name, dating, type, x, y):
             return redirect("/")
         else:
             return render_template("error.html", message="New location not added possibly due to name being already in use.")

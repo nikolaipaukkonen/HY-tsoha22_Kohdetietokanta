@@ -30,6 +30,5 @@ CREATE TABLE coordinates (
     id SERIAL PRIMARY KEY, 
     location_id INTEGER REFERENCES locations, 
     x FLOAT8, 
-    y FLOAT8, 
-    z FLOAT8
+    y FLOAT8
     );

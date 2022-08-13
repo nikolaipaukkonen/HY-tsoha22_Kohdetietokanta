@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css')}}">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='styles/main.css')}}"
+/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <title>Database of Archaeological Sites</title>
 <h1>Front page</h1>
@@ -8,31 +11,27 @@
 
 <nav>
   <table>
-  <tr>
-    {% if session.admin %}
-      <th>You are an admin!</th>
-    {% else %}
-      <th>You are a regular user</th>
-    {% endif %}
-
-    {% if session.user_id %}
+    <tr>
+      {% if session.user_id %}
       <th>You are logged in as {{ session.username}}</th>
-      <th><a href="/new">Add a location </a></th>
-      <th><a href="/logout">Logout </a></th>
-
-    {% else %}
-      You need to login to use the application
-      <th><a href="/login">Login </a></th>
+      <th><a href="/new">Add a location</a></th>
+      <th><a href="/logout">Logout</a></th>
+      {% if session.admin %}
+      <th>You are an admin!</th>
+      {% else %}
+      <th>You are a regular user</th>
+      {% endif %} {% else %} You need to login to use the application
+      <th><a href="/login">Login</a></th>
       <th><a href="{{ url_for('register') }}">New user</a></th>
 
-    {% endif %}
+      {% endif %}
       <th><a href="/">Front page</a></th>
     </tr>
   </table>
 </nav>
 
- <h2>List of locations</h2>
- <table>
+<h2>List of locations</h2>
+<table>
   <tr>
     <th>Site name</th>
     <th>Type</th>
