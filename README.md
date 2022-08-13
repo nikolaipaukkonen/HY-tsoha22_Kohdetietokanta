@@ -12,8 +12,8 @@ Sovellusta voi testata [Herokussa](https://tsoha-locations.herokuapp.com/).
 
 Tavoitteet seuraavaan välipalautukseen:
 - Working dynamic comment section for sites
-- Mapbox integration working (can add actual location for sites)
-- Navigation bar
+- ~~Mapbox integration working (can add actual location for sites)~~
+- ~~Navigation bar~~
 - Admin user status & tools
 - Error handling
 
