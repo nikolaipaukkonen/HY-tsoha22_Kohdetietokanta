@@ -60,7 +60,8 @@
         class="inputBox"
         type="number"
         id="Longitude"
-        placeholder="Longitude"
+		step="any"
+        placeholder=longitude
 		name="x"
       />
       <input
@@ -68,7 +69,8 @@
         class="inputBox"
         type="number"
         id="Latitude"
-        placeholder="Latitude"
+		step="any"
+        placeholder=latitude 
 		name="y"
       />
       <br />
@@ -98,8 +100,13 @@
         map.on('style.load', function () {
           map.on('click', function (e) {
             var coordinates = e.lngLat
+			var x = coordinates.lng
+			var y = coordinates.lat
             new mapboxgl.Marker().setLngLat(coordinates).addTo(map)
-          })
+			document.getElementById('Longitude').value = x
+			document.getElementById('Latitude').value = y
+		  })
+          
         })
         // fulscreen button
         map.addControl(new mapboxgl.FullscreenControl())

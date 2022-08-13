@@ -25,8 +25,8 @@ def send():
         name = request.form["name"]
         dating = request.form["datings"]
         type = request.form["types"]
-        x = request.form.get("x")
-        y = request.form.get("y")
+        x = request.form["x"]
+        y = request.form["y"]
         print(dating, type)
         if new_location.add_location(name, dating, type, x, y):
             return redirect("/")
