@@ -22,6 +22,12 @@
 	</table>
   </nav>
 
+<form action="/add_comment" method="POST">
+	<label for="comment">Comment:</label><br>
+	<textarea name="comment" rows="4" cols="50"></textarea><br>
+	<input type="submit" value="Add comment">
+</form>
+
 <h1>Comments for the site {{ site_name }}</h1>
 {% for comment in comments %}
 

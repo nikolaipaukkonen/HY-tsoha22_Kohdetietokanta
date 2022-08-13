@@ -41,11 +41,11 @@
   </tr>
   {% for item in items %}
   <tr>
-    <th>{{ item[0] }}</th>
     <th>{{ item[1] }}</th>
     <th>{{ item[2] }}</th>
     <th>{{ item[3] }}</th>
-    <th>Link</th>
+    <th>{{ item[4] }}</th>
+    <th><a href="/comment/{{item[0]}}">Comment</a></th>
   </tr>
   {% endfor %}
 </table>

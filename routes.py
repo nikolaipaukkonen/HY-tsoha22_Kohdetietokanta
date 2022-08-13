@@ -8,7 +8,7 @@ import new_location
 @app.route("/")
 def index():
     message = "Welcome to the archaeological location application!"
-    result = db.session.execute("SELECT L.name, T.type_name, D.dating, U.username FROM locations L, types T, datings D, users U WHERE L.createdby_id = U.id AND L.type_id = T.id AND L.dating_id = D.id")
+    result = db.session.execute("SELECT L.id, L.name, T.type_name, D.dating, U.username FROM locations L, types T, datings D, users U WHERE L.createdby_id = U.id AND L.type_id = T.id AND L.dating_id = D.id")
     sites = result.fetchall()
     return render_template("index.html", message=message, items=sites)
 
@@ -18,7 +18,11 @@ def new():
     datings = db.session.execute("SELECT * FROM datings")
     mapbox_access_token = getenv("MAPBOX_TOKEN")
     return render_template("map.html", mapbox_access_token=mapbox_access_token, datings=datings, types=types)
-    
+
+@app.route("/comment/<int:id>", methods=['GET'])
+def comment(id):
+    return render_template("comments.html", id=id)
+
 @app.route("/send", methods=["GET", "POST"])
 def send():
     if request.method == "POST":
@@ -65,3 +69,14 @@ def register():
             return redirect("/")
         else:
             return render_template("error.html", message="User register failed")
+
+@app.route("/add_comment", methods=["POST"])
+def add_comment():
+    if request.method == "POST":
+        id = request.form["id"]
+        comment = request.form["comment"]
+        if new_location.add_comment(id, comment):
+            return redirect("/")
+        else:
+            return render_template("error.html", message="Comment not added")
+            
