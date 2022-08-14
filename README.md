@@ -1,7 +1,15 @@
 # Kohdetietokanta
 Kurssityö HY Tietokantasovellus -kurssille kesä 2022. Toteutus Pythonilla, Flaskilla ja PostgreSQL:llä. 
 
+## Välipalautus 3
+Sovelluksessa toimivat nyt 
+- Käyttäjän rekisteröinti ja adminiksi ilmoittautuminen (testitarkoituksessa)
+- Uusien kohteiden luominen ja niiden sijainnin valitseminen Mapbox-ikkunasta
+- Luotujen kohteiden kommentoiminen ja kommentti-ikkunan karttanäkymä
 
+Sovellus on edelleen testattavissa [Herokussa](https://tsoha-locations.herokuapp.com/)
+
+Tietoturva-asioiden laajempi huomiointi, virheenkäsittely sekä ulkoasu puuttuvat vielä tästä versiosta. Admin-oikeuksien toteuttaminen (ensisijaisesti viestien poistaminen) on myös vaiheessa.
 
 ## Välipalautus 2
 Sovelluksen pohja on toiminnassa ja sen toteutus etenee. Tällä hetkellä käyttäjän luonti, sisäänkirjautuminen ja uloskirjautuminen toimivat. Kohteiden lisääminen *Add locations*-valinnalla ei ole vielä toiminnassa, eikä Mapbox-ikkunasta voi vielä valita kohteen sijaintia leveys- ja pituusasteiden tuomiseksi. Myöskään Admin-ominaisuuksia ei ole vielä toteutettu -- tarkoituksena olisi, että admin-käyttäjät voivat poistaa muiden käyttäjien lisäämiä kohteita. Myös kommentointimahdollisuus puuttuu versiosta.
@@ -11,10 +19,10 @@ Tietoturvaa (esim. SQL-injektioiden suhteen) ei ole vielä huomioitu laajemmin. 
 Sovellusta voi testata [Herokussa](https://tsoha-locations.herokuapp.com/).
 
 Tavoitteet seuraavaan välipalautukseen:
-- Working dynamic comment section for sites
+- ~~Working dynamic comment section for sites~~
 - ~~Mapbox integration working (can add actual location for sites)~~
 - ~~Navigation bar~~
-- Admin user status & tools
+- Admin user status & tools PARTIALLY DONE
 - Error handling
 
 ## Sovelluksen tarkoitus
