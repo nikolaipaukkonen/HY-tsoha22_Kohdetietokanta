@@ -1,10 +1,17 @@
-<!DOCTYPE html>
 <link
   rel="stylesheet"
   href="{{ url_for('static', filename='styles/main.css')}}"
 />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+<head>
+  <title>Comment a site</title>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js"></script>
+  <link
+    href="https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css"
+    rel="stylesheet"
+  />
+  <html>
+</head>
 <nav>
   <table>
     <tr>
@@ -48,6 +55,95 @@
   </tr>
 </table>
 
+<div id="map" style="width: 200px; height: 200px;"></div>
+
+<body>
+    <script>
+      var longitude, latitude
+      function getLonLat() {
+        longitude = document.getElementById('Longitude').value
+        latitude = document.getElementById('Latitude').value
+        display_map(longitude, latitude)
+      }
+      function display_map(longitude = {{ x }}, latitude =   {{ y }}) {
+        mapboxgl.accessToken = '{{ mapbox_access_token }}'
+        var map = new mapboxgl.Map({
+          container: 'map',
+          style: 'mapbox://styles/mapbox/satellite-streets-v10',
+          center: [longitude, latitude],
+          zoom: 5,
+          bearing: 0,
+          pitch: 0,
+        })
+        
+        // display a blue marker
+        var marker = new mapboxgl.Marker()
+          .setLngLat([longitude, latitude])
+          .addTo(map)
+        // Navigation marker at top-left corner
+        var nav = new mapboxgl.NavigationControl()
+        map.addControl(nav, 'top-left')
+        // change false to true, to get your location. Then, enable location in the browser.
+        map.addControl(
+          new mapboxgl.GeolocateControl({
+            positionOptions: {
+              enableHighAccuracy: true,
+            },
+            trackUserLocation: true,
+          }),
+        )
+        // The 'building' layer in the mapbox-streets vector source contains building-height
+        // data from OpenStreetMap.
+        map.on('load', function () {
+          // Insert the layer beneath any symbol layer.
+          var layers = map.getStyle().layers
+          var labelLayerId
+          for (var i = 0; i < layers.length; i++) {
+            if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
+              labelLayerId = layers[i].id
+              break
+            }
+          }
+          map.addLayer(
+            {
+              id: '3d-buildings',
+              source: 'composite',
+              'source-layer': 'building',
+              filter: ['==', 'extrude', 'true'],
+              type: 'fill-extrusion',
+              minzoom: 15,
+              paint: {
+                'fill-extrusion-color': '#aaa',
+                // use an 'interpolate' expression to add a smooth transition effect to the
+                // buildings as the user zooms in
+                'fill-extrusion-height': [
+                  'interpolate',
+                  ['linear'],
+                  ['zoom'],
+                  15,
+                  0,
+                  15.05,
+                  ['get', 'height'],
+                ],
+                'fill-extrusion-base': [
+                  'interpolate',
+                  ['linear'],
+                  ['zoom'],
+                  15,
+                  0,
+                  15.05,
+                  ['get', 'min_height'],
+                ],
+                'fill-extrusion-opacity': 0.6,
+              },
+            },
+            labelLayerId,
+          )
+        })
+      }
+      display_map()
+    </script>
+  </body>
 <h1>Comments for the site {{ site_name }}</h1>
   {% for comment in comments %}
   <p>{{ comment[0] }}</p>
@@ -55,3 +151,4 @@
   <i>at</i> {{ comment[1].strftime("%Y-%m-%d %H:%M:%S") }}
   {% endfor %}
 
+  </html>

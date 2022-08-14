@@ -1,3 +1,4 @@
+from types import coroutine
 from app import app
 from flask import render_template, request, redirect
 from db import db
@@ -24,7 +25,13 @@ def comment(id):
     site = result.fetchone()
     comments_result = db.session.execute("SELECT C.content, C.sent_at, U.username FROM comments C, users U WHERE C.user_id = U.id AND C.location_id = :id", {"id": id})
     comments = comments_result.fetchall()
-    return render_template("comments.html", site=site, id=id, comments=comments)
+    coordinates_result = db.session.execute("SELECT x, y FROM coordinates WHERE location_id = :id", {"id": id})
+    coordinate = coordinates_result.fetchone()
+    print(coordinate)
+    x = coordinate[0]
+    y = coordinate[1]
+    mapbox_access_token = getenv("MAPBOX_TOKEN")
+    return render_template("comments.html", site=site, id=id, comments=comments, mapbox_access_token=mapbox_access_token, x=x, y=y)
 
 @app.route("/send", methods=["GET", "POST"])
 def send():
