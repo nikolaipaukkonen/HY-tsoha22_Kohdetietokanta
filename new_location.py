@@ -3,7 +3,7 @@ from flask import session
 import users
 
 def add_location(name, dating, type, x, y):
-    #try:
+    try:
         user_id = users.user_id()
         print("Test")
         print("Input:", name, dating, type, x, y)
@@ -22,5 +22,5 @@ def add_location(name, dating, type, x, y):
         db.session.execute("INSERT INTO coordinates (x, y, location_id) VALUES (:x, :y, :location_id);", {"x":x, "y":y, "location_id":location_id[0]})
         db.session.commit()
         return True
-    #except:
-        #return False
+    except:
+        return False

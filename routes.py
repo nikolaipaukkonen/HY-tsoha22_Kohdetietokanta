@@ -2,8 +2,7 @@ from app import app
 from flask import render_template, request, redirect
 from db import db
 from os import getenv
-import users
-import new_location
+import users, new_location, comments
 
 @app.route("/")
 def index():
@@ -21,7 +20,11 @@ def new():
 
 @app.route("/comment/<int:id>", methods=['GET'])
 def comment(id):
-    return render_template("comments.html", id=id)
+    result = db.session.execute("SELECT L.name, T.type_name, D.dating, U.username FROM locations L, types T, datings D, users U WHERE L.id = :id", {"id": id})
+    site = result.fetchone()
+    comments_result = db.session.execute("SELECT C.content, C.sent_at, U.username FROM comments C, users U WHERE C.user_id = U.id AND C.location_id = :id", {"id": id})
+    comments = comments_result.fetchall()
+    return render_template("comments.html", site=site, id=id, comments=comments)
 
 @app.route("/send", methods=["GET", "POST"])
 def send():
@@ -72,10 +75,12 @@ def register():
 
 @app.route("/add_comment", methods=["POST"])
 def add_comment():
+    print("add_comment")
     if request.method == "POST":
-        id = request.form["id"]
-        comment = request.form["comment"]
-        if new_location.add_comment(id, comment):
+        comment_text = request.form["comment"]
+        location_id = request.form["id"]
+        print(comment_text, location_id)
+        if comments.add(comment_text, location_id):
             return redirect("/")
         else:
             return render_template("error.html", message="Comment not added")

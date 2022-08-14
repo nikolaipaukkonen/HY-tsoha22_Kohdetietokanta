@@ -1,34 +1,56 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css')}}">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='styles/main.css')}}"
+/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <nav>
-	<table>
-	<tr>
-	  {% if session.user_id %}
-		<th>You are logged in as {{ session.username}}</th>
-		<th><a href="/new">Add a location </a></th>
-		<th><a href="/logout">Logout </a></th>
-  
-  
-	  {% else %}
-		You need to login to use the application
-		<th><a href="/login">Login </a></th>
-		<th><a href="{{ url_for('register') }}">New user</a></th>
-  
-	  {% endif %}
-		<th><a href="/">Front page</a></th>
-	  </tr>
-	</table>
-  </nav>
+  <table>
+    <tr>
+      {% if session.user_id %}
+      <th>You are logged in as {{ session.username}}</th>
+      <th><a href="/new">Add a location</a></th>
+      <th><a href="/logout">Logout</a></th>
+
+      {% else %} You need to login to use the application
+      <th><a href="/login">Login</a></th>
+      <th><a href="{{ url_for('register') }}">New user</a></th>
+
+      {% endif %}
+      <th><a href="/">Front page</a></th>
+    </tr>
+  </table>
+</nav>
 
 <form action="/add_comment" method="POST">
-	<label for="comment">Comment:</label><br>
-	<textarea name="comment" rows="4" cols="50"></textarea><br>
-	<input type="submit" value="Add comment">
+  <label for="comment">Comment:</label>
+  <br />
+  <textarea name="comment" rows="4" cols="50"></textarea>
+  <br />
+  <input type="number" name="id" value="{{ id }}" readonly/>
+  <br />
+  <input type="submit" value="Add comment" />
 </form>
 
-<h1>Comments for the site {{ site_name }}</h1>
-{% for comment in comments %}
+<table>
+  <tr>
+    <th>Site name</th>
+    <th>Type</th>
+    <th>Dating</th>
+    <th>Created by</th>
+  </tr>
+  <tr>
+    <th>{{ site[0] }}</th>
+    <th>{{ site[1] }}</th>
+    <th>{{ site[2] }}</th>
+    <th>{{ site[3] }}</th>
+  </tr>
+</table>
 
-{% endfor %}
+<h1>Comments for the site {{ site_name }}</h1>
+<ul>
+  {% for comment in comments %}
+  <li>{{ comment }}</li>
+  {% endfor %}
+</ul>
