@@ -21,7 +21,7 @@ def new():
 
 @app.route("/comment/<int:id>", methods=['GET'])
 def comment(id):
-    result = db.session.execute("SELECT L.name, T.type_name, D.dating, U.username FROM locations L, types T, datings D, users U WHERE L.id = :id", {"id": id})
+    result = db.session.execute("SELECT L.name, T.type_name, D.dating, U.username FROM locations L, types T, datings D, users U WHERE L.id = :id AND L.type_id = T.id AND L.dating_id = D.id", {"id": id})
     site = result.fetchone()
     comments_result = db.session.execute("SELECT C.content, C.sent_at, U.username FROM comments C, users U WHERE C.user_id = U.id AND C.location_id = :id", {"id": id})
     comments = comments_result.fetchall()
