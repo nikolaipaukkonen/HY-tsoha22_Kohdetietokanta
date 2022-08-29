@@ -11,6 +11,8 @@ Sovellus on edelleen testattavissa [Herokussa](https://tsoha-locations.herokuapp
 
 Tietoturva-asioiden laajempi huomiointi, virheenkäsittely sekä ulkoasu puuttuvat vielä tästä versiosta. Admin-oikeuksien toteuttaminen (ensisijaisesti viestien poistaminen) on myös vaiheessa.
 
+Edit: Ei-admin-käyttäjän rekisteröinnissä on bugi, jota en pääse korjaamaan välipalautukseen mennessä.
+
 ## Välipalautus 2
 Sovelluksen pohja on toiminnassa ja sen toteutus etenee. Tällä hetkellä käyttäjän luonti, sisäänkirjautuminen ja uloskirjautuminen toimivat. Kohteiden lisääminen *Add locations*-valinnalla ei ole vielä toiminnassa, eikä Mapbox-ikkunasta voi vielä valita kohteen sijaintia leveys- ja pituusasteiden tuomiseksi. Myöskään Admin-ominaisuuksia ei ole vielä toteutettu -- tarkoituksena olisi, että admin-käyttäjät voivat poistaa muiden käyttäjien lisäämiä kohteita. Myös kommentointimahdollisuus puuttuu versiosta.
 
