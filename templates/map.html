@@ -38,17 +38,17 @@
     <form action="/send" method="post">
       Location name:
       <br />
-      <textarea name="name" rows="1" cols="40"></textarea>
+      <textarea name="name" rows="1" cols="40" required></textarea>
       <br />
       Location type:
-      <select name="types" method="GET" action="/send">
+      <select name="types" method="GET" action="/send" required>
         {% for type in types %}
         <option value="{{ type }}">{{ type }}</option>
         {% endfor %}
       </select>
       <br />
       Location dating:
-      <select name="datings" method="GET" action="/send">
+      <select name="datings" method="GET" action="/send" required>
         {% for dating in datings %}
         <option value="{{ dating }}">{{ dating }}</option>
         {% endfor %}
@@ -62,7 +62,7 @@
         id="Longitude"
 		step="any"
         placeholder=longitude
-		name="x"
+		name="x" required
       />
       <input
 	  	action="/send"
@@ -71,7 +71,7 @@
         id="Latitude"
 		step="any"
         placeholder=latitude 
-		name="y"
+		name="y" required
       />
       <br />
       <input type="submit" value="Send" />
