@@ -3,13 +3,13 @@
 
 <form action="/register" method="POST">
     Enter username:
-    <input type="text" name="username" />
+    <input type="text" name="username" required/>
     <br>
     Enter password:
-    <input type="password" name="password1" >
+    <input type="password" name="password1" required>
     <br>
     Re-enter password:
-    <input type="password" name="password2" >
+    <input type="password" name="password2" required>
     Do you want to be an administrator?
     <input type="checkbox" name="admin" value="Yes">
     <input type="submit" value="Send">

@@ -72,7 +72,7 @@ def register():
         username = request.form["username"]
         password1 = request.form["password1"]
         password2 = request.form["password2"]
-        admin = request.form["admin"]
+        admin = request.form.get("admin", False)
         if password1 != password2:
             return render_template("error.html", message="Passwords do not match")
         if users.register(username, password1, admin):
