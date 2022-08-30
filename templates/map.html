@@ -74,6 +74,7 @@
 		name="y" required
       />
       <br />
+      <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
       <input type="submit" value="Send" />
       <br />
       <div id="map" style="width: 200%; height: 500px;"></div>

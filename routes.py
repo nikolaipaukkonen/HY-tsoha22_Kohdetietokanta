@@ -1,6 +1,5 @@
-from types import coroutine
 from app import app
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, session
 from db import db
 from os import getenv
 import users, new_location, comments
@@ -36,6 +35,8 @@ def comment(id):
 @app.route("/send", methods=["GET", "POST"])
 def send():
     if request.method == "POST":
+        if session["csrf_token"] != request.form.get("csrf_token"):
+            return render_template("error.html", message="CSRF token is invalid")
         name = request.form["name"]
         dating = request.form["datings"]
         type = request.form["types"]
@@ -82,8 +83,9 @@ def register():
 
 @app.route("/add_comment", methods=["POST"])
 def add_comment():
-    print("add_comment")
     if request.method == "POST":
+        if session["csrf_token"] != request.form.get("csrf_token"):
+            return render_template("error.html", message="CSRF token is invalid")
         comment_text = request.form["comment"]
         location_id = request.form["id"]
         print(comment_text, location_id)

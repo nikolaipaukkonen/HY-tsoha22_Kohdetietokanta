@@ -37,6 +37,7 @@
   <br />
   <input type="number" name="id" value="{{ id }}" readonly/>
   <br />
+  <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
   <input type="submit" value="Add comment" />
 </form>
 
