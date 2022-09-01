@@ -9,7 +9,9 @@ def index():
     message = "Welcome to the archaeological location application!"
     result = db.session.execute("SELECT L.id, L.name, T.type_name, D.dating, U.username FROM locations L, types T, datings D, users U WHERE L.createdby_id = U.id AND L.type_id = T.id AND L.dating_id = D.id")
     sites = result.fetchall()
-    return render_template("index.html", message=message, items=sites)
+    result = db.session.execute("SELECT COUNT(*) FROM locations")
+    amount = result.fetchone()[0]
+    return render_template("index.html", amount=amount, message=message, items=sites)
 
 @app.route("/new", methods=['GET'])
 def new():
