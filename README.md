@@ -1,6 +1,9 @@
 # Kohdetietokanta
 Kurssityö HY Tietokantasovellus -kurssille kesä 2022. Toteutus Pythonilla, Flaskilla ja PostgreSQL:llä. 
 
+## Lopullinen palautus
+Käyttäjä voi luoda uudet tunnukset (halutessaan admin-oikeuksin), kirjautua sisään ja kirjautua ulos. Sisäänkirjautuneet käyttäjät voivat lisätä uusia arkeologisia kohteita tietokantaan sekä kommentoida aiemmin lisättyjä kohteita. Lisäksi admin-käyttäjät voivat poistaa kommentteja. Etusivulla näkyy lisäksi tieto siitä, kuinka monta kohdetta tietokantaan on lisätty. Virheenkäsittelyä on paranneltu ja tietoturva-asioita otettu huomioon (CSRF-haavoittuvuus). 
+
 ## Välipalautus 3
 Sovelluksessa toimivat nyt 
 - Käyttäjän rekisteröinti ja adminiksi ilmoittautuminen (testitarkoituksessa)
