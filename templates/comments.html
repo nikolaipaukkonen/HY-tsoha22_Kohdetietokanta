@@ -147,9 +147,16 @@
   </body>
 <h1>Comments for the site {{ site_name }}</h1>
   {% for comment in comments %}
-  <p>{{ comment[0] }}</p>
-  <i>Sent by </i>{{ comment[2] }}
-  <i>at</i> {{ comment[1].strftime("%Y-%m-%d %H:%M:%S") }}
+  <p>{{ comment[1] }}</p>
+  <i>Sent by </i>{{ comment[3] }}
+  <i>at</i> {{ comment[2].strftime("%Y-%m-%d %H:%M:%S") }}
+  {% if session.admin %}
+      <th><form action="/comment/{{ comment[0] }}/delete" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+        <button class="delete" type="submit">Delete comment</button>
+      {% else %}
+      <th></th>
+      {% endif %}
   {% endfor %}
 
   </html>

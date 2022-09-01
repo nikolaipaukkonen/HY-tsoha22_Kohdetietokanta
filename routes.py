@@ -24,7 +24,7 @@ def new():
 def comment(id):
     result = db.session.execute("SELECT L.name, T.type_name, D.dating, U.username FROM locations L, types T, datings D, users U WHERE L.createdby_id = U.id AND L.id = :id AND L.type_id = T.id AND L.dating_id = D.id", {"id": id})
     site = result.fetchone()
-    comments_result = db.session.execute("SELECT C.content, C.sent_at, U.username FROM comments C, users U WHERE C.user_id = U.id AND C.location_id = :id", {"id": id})
+    comments_result = db.session.execute("SELECT C.id, C.content, C.sent_at, U.username FROM comments C, users U WHERE C.user_id = U.id AND C.location_id = :id", {"id": id})
     comments = comments_result.fetchall()
     coordinates_result = db.session.execute("SELECT x, y FROM coordinates WHERE location_id = :id", {"id": id})
     coordinate = coordinates_result.fetchone()
@@ -33,6 +33,15 @@ def comment(id):
     y = coordinate[1]
     mapbox_access_token = getenv("MAPBOX_TOKEN")
     return render_template("comments.html", site=site, id=id, comments=comments, mapbox_access_token=mapbox_access_token, x=x, y=y)
+
+@app.route("/comment/<int:id>/delete", methods=["POST"])
+def delete_comment(id):
+    try:
+        db.session.execute("DELETE FROM comments WHERE id = :id", {"id": id})
+        db.session.commit()
+        return redirect("/")
+    except:
+        return render_template("error.html", message="Comment deletion failed")
 
 @app.route("/send", methods=["GET", "POST"])
 def send():
