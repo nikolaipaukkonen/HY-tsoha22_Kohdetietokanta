@@ -1,6 +1,6 @@
 body {
     margin: auto;
-    max-width: 50em;
+    max-width: 40em;
     font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
     background: #d4d4d4
 }
@@ -19,9 +19,9 @@ form {
     float: center;
     padding: .5em;
     background: #b1c0e3;
-    border-radius: .5em;
-    max-width: 20em;
-    display  : grid;
+    border-radius: .1em;
+    max-width: 40em;
+    display  : inline-grid;
     grid-template-columns: 10em 10em;
     grid-row-gap: .3em;
     margin-bottom: 2em;
@@ -39,7 +39,7 @@ form #button {
     border: none;
     text-align: center;
     width: 5em;
-    margin: auto 0 auto 5.5em;
+    margin: auto 0 auto 5.0em;
     background: gray;
 }
 

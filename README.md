@@ -45,6 +45,4 @@ Mikäli aikataulu ja sovelluksen eteneminen antavat myöten, toteutan sovellukse
 | Tyypit | tyyppi_nimi |
 | Ajoitukset | ajoituksen_nimi |
 
-## Asennus
 
-## Käyttöohje

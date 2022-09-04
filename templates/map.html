@@ -37,24 +37,19 @@
   <div>
     <form action="/send" method="post">
       Location name:
-      <br />
       <textarea name="name" rows="1" cols="40" required></textarea>
-      <br />
       Location type:
       <select name="types" method="GET" action="/send" required>
         {% for type in types %}
         <option value="{{ type }}">{{ type }}</option>
         {% endfor %}
       </select>
-      <br />
       Location dating:
       <select name="datings" method="GET" action="/send" required>
         {% for dating in datings %}
         <option value="{{ dating }}">{{ dating }}</option>
         {% endfor %}
       </select>
-      <br />
-
       <input
 	  	action="/send"
         class="inputBox"
@@ -77,7 +72,7 @@
       <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
       <input type="submit" value="Send" />
       <br />
-      <div id="map" style="width: 200%; height: 500px;"></div>
+      <div id="map" style="width: 200%; height: 500px; grid-column: 0; grid-row: 6;"></div>
     </form>
   </div>
   <body>
@@ -127,10 +122,7 @@
             trackUserLocation: true,
           }),
         )
-        // The 'building' layer in the mapbox-streets vector source contains building-height
-        // data from OpenStreetMap.
         map.on('load', function () {
-          // Insert the layer beneath any symbol layer.
           var layers = map.getStyle().layers
           var labelLayerId
           for (var i = 0; i < layers.length; i++) {
@@ -149,8 +141,6 @@
               minzoom: 15,
               paint: {
                 'fill-extrusion-color': '#aaa',
-                // use an 'interpolate' expression to add a smooth transition effect to the
-                // buildings as the user zooms in
                 'fill-extrusion-height': [
                   'interpolate',
                   ['linear'],

@@ -151,11 +151,10 @@
   <i>Sent by </i>{{ comment[3] }}
   <i>at</i> {{ comment[2].strftime("%Y-%m-%d %H:%M:%S") }}
   {% if session.admin %}
-      <th><form action="/comment/{{ comment[0] }}/delete" method="POST">
+      <form action="/comment/{{ comment[0] }}/delete" method="POST">
         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-        <button class="delete" type="submit">Delete comment</button>
+        <button class="delete" type="submit">Delete comment</button></form>
       {% else %}
-      <th></th>
       {% endif %}
   {% endfor %}
 
