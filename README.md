@@ -10,7 +10,7 @@ Sovelluksessa toimivat nyt
 - Uusien kohteiden luominen ja niiden sijainnin valitseminen Mapbox-ikkunasta
 - Luotujen kohteiden kommentoiminen ja kommentti-ikkunan karttanäkymä
 
-Sovellus on edelleen testattavissa [Herokussa](https://tsoha-locations.herokuapp.com/)
+~~Sovellus on edelleen testattavissa [Herokussa](https://tsoha-locations.herokuapp.com/)~~
 
 Tietoturva-asioiden laajempi huomiointi, virheenkäsittely sekä ulkoasu puuttuvat vielä tästä versiosta. Admin-oikeuksien toteuttaminen (ensisijaisesti viestien poistaminen) on myös vaiheessa.
 
@@ -20,7 +20,7 @@ Sovelluksen pohja on toiminnassa ja sen toteutus etenee. Tällä hetkellä käyt
 
 Tietoturvaa (esim. SQL-injektioiden suhteen) ei ole vielä huomioitu laajemmin. Tietokannan osoite, Mapboxin API-avain yms. asiat on piilotettu .env-tiedostoon (muokkaushistoriassa näkyvä testivaiheen API-avain on vanhentunut).
 
-Sovellusta voi testata [Herokussa](https://tsoha-locations.herokuapp.com/).
+~~Sovellusta voi testata [Herokussa](https://tsoha-locations.herokuapp.com/).~~
 
 Tavoitteet seuraavaan välipalautukseen:
 - ~~Working dynamic comment section for sites~~
